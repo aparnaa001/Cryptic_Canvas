@@ -1,0 +1,131 @@
+{% extends 'usercommon.html' %}
+     {% block content %}
+    <div class="page-title dark-background" data-aos="fade">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>Feedback Page</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+
+  <section> 
+    
+    <div class="container p-5">
+      <div class="row gy-4 p-5">
+        <div class="container text-center">
+          <h2>Feedback ✨</h2>
+        </div>
+        <div class="col-12 text-center" style="font-size: 32px;color: goldenrod;">
+          <span><i id="star1" class="bi bi-star mx-2" onmouseover="funcstar(this)" onmouseleave="funcleave(this)" onclick="setvalue(1)"></i></span>
+          <span><i id="star2" class="bi bi-star mx-2" onmouseover="funcstar(this)" onmouseleave="funcleave(this)" onclick="setvalue(2)"></i></span>
+          <span><i id="star3" class="bi bi-star mx-2" onmouseover="funcstar(this)" onmouseleave="funcleave(this)" onclick="setvalue(3)"></i></span>
+          <span><i id="star4" class="bi bi-star mx-2" onmouseover="funcstar(this)" onmouseleave="funcleave(this)" onclick="setvalue(4)"></i></span>
+          <span><i id="star5" class="bi bi-star mx-2" onmouseover="funcstar(this)" onmouseleave="funcleave(this)" onclick="setvalue(5)"></i></span>
+        </div>
+        <form method="post">
+          {% csrf_token %} 
+        <div class="col-lg-12">
+          <center><textarea name="feedback" id="feedback" placeholder="Enter your valuable feedback" class="form-control w-50" required></textarea></center>
+        </div>
+        <input type="hidden" name="rating" id="rating" required>
+        <div class="col-lg-12">
+          <center><button class="btn btn-secondary w-50 my-4">Submit</button></center>
+        </div>
+      </form>
+      </div>
+    </div>
+    {% for f in feedbacks %}
+    <div class="card d-flex mx-auto my-2 w-50 p-4 text-center">
+      <div>
+        {% if f.star == 5 %}
+        <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+        {% elif f.star == 4  %}
+        <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+        {% elif f.star == 3  %}
+        <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+        {% elif f.star == 2  %}
+        <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+        {% elif f.star == 1 %}
+        <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+        {% else %}
+        <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+        <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+        {% endif %} 
+
+
+        <br><br><b>{{ f.feedback }}</b><br>
+        <em style="font-size: 13px;">{{ f.date }}</em>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+  <script>
+    var set=0
+    function funcstar(elem){
+      elem.className="bi bi-star-fill mx-2"
+      id=elem.id
+      id=parseInt(id[4])
+      
+      for (let i=1;i<=id;i++){
+        document.getElementById('star'+i.toString()).className='bi bi-star-fill mx-2'
+      }
+    }
+    function funcleave(a){
+     if (set==0)
+     {
+      for (let j=1;j<=5;j++){
+        document.getElementById('star'+j.toString()).className='bi bi-star mx-2'
+      }
+     }
+    }
+    function setvalue(num){
+      if (set==0){
+        set=1
+      for (let i=1;i<=num;i++){
+        document.getElementById('star'+i.toString()).className='bi bi-star-fill mx-2'
+        document.getElementById('rating').value=num;
+      }
+      }
+      else{
+        set=0
+        for (let j=1;j<=5;j++){
+        document.getElementById('star'+j.toString()).className='bi bi-star mx-2'
+
+      }
+      } 
+    } 
+
+    
+  </script>
+{% endblock %} 
+
+
+

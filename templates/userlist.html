@@ -1,0 +1,59 @@
+{% extends 'admincommon.html' %}
+    <!-- Page Title -->
+     {% block content %}
+     <div class="page-title dark-background" data-aos="fade">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>User's List</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumbs">
+        <div class="container">
+        </div>
+      </nav>
+    </div>
+    <section>
+      <div class="container p-5">
+                <table class="table table-stripped text-center small w-75 mx-auto p-5" >
+          <tr >
+            <th>User</th>
+            <th>Image</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Joined</th>
+            <th>Action</th>
+          </tr>
+          {% for user in users %}
+          <tr class="align-middle">
+            <td>{{ user.name }}</td>
+            <td><img src="static/media/{{ user.image }}" style="width: 20%;" alt=""></td>
+            <td>{{ user.number }}</td>
+            <td>{{ user.mail }}</td>
+            <td>{{ user.age }}</td>
+            <td>{{ user.joined }}</td>
+            {% if user.user.is_active %}
+            <td><a href="/toggleuser?id={{ user.user.id }}" class="btn btn-danger" style="font-size: 11px;">Deactivate</a></td>
+            {% else %}
+            <td><a href="/toggleuser?id={{ user.user.id }}" class="btn btn-success" style="font-size: 11px;">Activate</a></td>
+            {% endif %}
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    
+    
+    </section>
+    
+     {% endblock %}
+
+
+
+
+
+
+     

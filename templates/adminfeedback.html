@@ -1,0 +1,88 @@
+{% extends 'admincommon.html' %}
+    <!-- Page Title -->
+     {% block content %}
+     <div class="page-title dark-background" data-aos="fade">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>User's Feedback Here</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumbs">
+        <div class="container">
+        </div>
+      </nav>
+    </div>
+    <section>
+        
+      <div class="container">
+        <table class="table table-stripped text-center">
+          <tr >
+            <th>User</th>
+            <th>Rating</th>
+            <th>Feedback</th>
+            <th>Date</th>
+          </tr>
+          {% for f in feedbacks %}
+          <tr class="align-middle">
+            <td><img src="static/media/{{ f.user.image }}" class="my-2" style="border-radius: 100%;width: 80px;" alt=""><br>{{ f.user.name }}</td>
+            <td>
+              {% if f.star == 5 %}
+              <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+              {% elif f.star == 4  %}
+              <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+              {% elif f.star == 3  %}
+              <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+              {% elif f.star == 2  %}
+              <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+              {% elif f.star == 1 %}
+              <span style="color: goldenrod;"><i class="bi bi-star-fill mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+              {% else %}
+              <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+              <span style="color: goldenrod;"><i class="bi bi-star mx-2"></i></span>
+              {% endif %} 
+            
+            </td>
+            <td>{{ f.feedback }}</td>
+            <td>{{ f.date }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    
+       </section>
+    
+     {% endblock %}
+
+
+
+
+
+
+     

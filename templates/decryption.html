@@ -1,0 +1,50 @@
+{% extends 'usercommon.html' %}
+    <!-- Page Title -->
+     {% block content %}
+     <div class="page-title dark-background" data-aos="fade">
+      <div class="heading">
+        <div class="container">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-lg-8">
+              <h1>Welcome to Decryption Page</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="breadcrumbs">
+        <div class="container">
+        </div>
+      </nav>
+    </div>
+    <section>
+        <div class="container w-50 p-5" >
+        <form method="post" enctype = 'multipart/form-data'>
+            {% csrf_token %}
+            <div class="row p-5">
+               <div class="col-12 mt-2">
+                    <input type='file' name="stegoimage" class="form-control" placeholder="stegoimageimage" required>
+    
+                </div>
+                
+                <div class="col-12 mt-2 text-center">
+                  <button type='submit' name="decrypt" class="btn btn-success w-100 mt-4">Decrypt</button>
+                  
+    
+              </div>
+            </div>
+        </form>
+        <div class="col-12 mt-2 text-center">
+          <textarea name="decrypttext" class="form-control" placeholder ="Extract your text here" >{{ text }}</textarea>
+
+      </div>
+    </div>
+       </section>
+    
+     {% endblock %}
+
+
+
+
+
+
+     

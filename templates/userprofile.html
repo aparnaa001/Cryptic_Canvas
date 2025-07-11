@@ -1,0 +1,41 @@
+{% extends 'usercommon.html' %}
+    <!-- Page Title -->
+     {% block content %}
+     <div class="page-title dark-background" data-aos="fade">
+        <div class="heading">
+          <div class="container">
+            <div class="row d-flex justify-content-center text-center">
+              <div class="col-lg-8">
+                <h1>User Profile</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Page Title -->
+      <section>
+        <div class="container">
+         <div class="card" style="border-radius: 20px;">
+            <div class="row p-4">
+                <div class="col-12">
+                    <center><img src="static/media/{{ user.image }}" style="width:10%;border-radius: 100%;" alt=""></center>
+                </div>
+                <div class="col-12 my-2">
+                    <center><b>Username : </b><input type="text" value="{{ user.name }}" class="form-control w-25" readonly ></center>
+                </div>
+                <div class="col-12 my-2">
+                    <center><b>Contact : </b><input type="number" value="{{ user.number }}" class="form-control w-25" readonly></center>
+                </div>
+                <div class="col-12 my-2">
+                    <center><b>E-Mail : </b><input type="email" value="{{ user.mail }}" class="form-control w-25"  readonly></center>
+                </div>
+                <div class="col-12 my-2">
+                    <center><b>Age : </b><input type="number" value="{{ user.age }}" class="form-control w-25" readonly ></center>
+                </div>
+
+            </div>
+         </div>
+        </div>
+       </section>
+  
+
+     {% endblock %}
